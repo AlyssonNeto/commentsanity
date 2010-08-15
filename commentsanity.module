@@ -18,5 +18,14 @@ function commentsanity_form_alter(&$form, $form_state, $form_id) {
     $form['comment']['comment_default_order']['#description'] .= ' ' . t('<em>Disabled by Comment Sanity module.</em>');
     $form['comment']['comment_controls']['#disabled'] = TRUE;
     $form['comment']['comment_controls']['#description'] .= ' ' . t('<em>Disabled by Comment Sanity module.</em>');
+    $form['comment']['comment_default_mode']['#options'] = array(
+      COMMENT_MODE_FLAT_EXPANDED => t('Flat (chrological)'),
+      COMMENT_MODE_THREADED_EXPANDED => t('Threaded (replies appear together)')
+    );
+    $form['comment']['comment']['#options'] = array(
+      COMMENT_NODE_DISABLED => t('Disabled'),
+      COMMENT_NODE_READ_WRITE => t('Enabled')
+    );
+
   }
 }
