@@ -1,0 +1,6 @@
+core = "6.x"
+dependencies[] = "comment"
+description = "Enforce 'oldest first' default order for comments on all types. Also disable comment controls always."
+name = "Comment Sanity"
+package = "User experience"
+

@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * Implementation of hook_init()
+ */
+function commentsanity_init() {
+  global $conf;
+  $types = array_keys(node_get_types('names'));
+  foreach($types as $type) {
+    $conf['comment_default_order_' . $type] = COMMENT_ORDER_OLDEST_FIRST;
+    $conf['comment_controls_' . $type] = COMMENT_CONTROLS_HIDDEN;
+  }
+}
+
+function commentsanity_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'node_type_form' && isset($form['identity']['type'])) {
+    $form['comment']['comment_default_order']['#disabled'] = TRUE;
+    $form['comment']['comment_default_order']['#description'] .= ' ' . t('<em>Disabled by Comment Sanity module.</em>');
+    $form['comment']['comment_controls']['#disabled'] = TRUE;
+    $form['comment']['comment_controls']['#description'] .= ' ' . t('<em>Disabled by Comment Sanity module.</em>');
+  }
+}
